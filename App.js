@@ -1,5 +1,5 @@
 // @flow
-import * as React from "react";
+import * as React from "react"; 
 import {StatusBar, Platform} from "react-native";
 import {createSwitchNavigator, createAppContainer} from "react-navigation";
 import {Font, AppLoading} from "expo";
