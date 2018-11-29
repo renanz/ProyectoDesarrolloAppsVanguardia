@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import {ScrollView, StyleSheet, View, Image, StatusBar} from "react-native";
+import axios from "axios";
 
 import {ThemeProvider, Colors, StyleGuide, Images, Text, SafeAreaView} from "../components";
 
@@ -20,11 +21,28 @@ export default class Welcome extends React.Component<NavigationProps<>> {
         navigation.navigate(themeName);
     }
 
+    state = {
+        postsData: []
+    };
+
     food = () => this.navigate("Food");
-    social = () => this.navigate("Social");
-    music = () => this.navigate("Music");
-    photography = () => this.navigate("Photography");
-    travel = () => this.navigate("Travel");
+
+    async componentDidMount(): Promise<void> {
+        let info = [];
+        axios
+            .get("https://public-api.wordpress.com/rest/v1.1/sites/rutacincohn.com/posts/")
+            .then(res => {
+                const post = res.data.posts;
+                for (let index = 0; index < post.length; index++) {
+                    info.push(post[index]);
+                }
+
+                this.setState(() => ({
+                    postsData: info
+                }));
+            })
+            .catch(err => console.log(err.message)); //eslint-disable-lint
+    }
 
     render(): React.Node {
         return (
@@ -38,50 +56,23 @@ export default class Welcome extends React.Component<NavigationProps<>> {
                     <SafeAreaView style={styles.safeHeader} top>
                         <View style={styles.header}>
                             <View>
-                                <Text type="footnote">SKETCH ELEMENTS</Text>
-                                <Text type="title1">Apps</Text>
+                                <Text type="footnote">Proyecto Desarrollo Apps Vanguardia</Text>
+                                <Text type="title1">Posts</Text>
                             </View>
-                            <Image source={Images.logo} style={styles.logo} />
                         </View>
                     </SafeAreaView>
                     <ScrollView contentContainerStyle={styles.content}>
                         <SafeAreaView>
-                            <Kit
-                                uri={images.food.uri}
-                                preview={images.food.preview}
-                                title="Food"
-                                backgroundColor={Colors.Food.primary}
-                                onPress={this.food}
-                            />
-                            <Kit
-
-                                uri={images.social.uri}
-                                preview={images.social.preview}
-                                title="Social"
-                                backgroundColor={Colors.Social.primary}
-                                onPress={this.social}
-                            />
-                            <Kit
-                                uri={images.music.uri}
-                                preview={images.music.preview}
-                                title="Music"
-                                backgroundColor={Colors.Music.primary}
-                                onPress={this.music}
-                            />
-                            <Kit
-                                uri={images.photography.uri}
-                                preview={images.photography.preview}
-                                title="Photography"
-                                backgroundColor={Colors.Photography.primary}
-                                onPress={this.photography}
-                            />
-                            <Kit
-                                uri={images.travel.uri}
-                                preview={images.travel.preview}
-                                title="Travel"
-                                backgroundColor={Colors.Travel.primary}
-                                onPress={this.travel}
-                            />
+                            {this.state.postsData.map(data => (
+                                <Kit
+                                    key={data.ID.toString()}
+                                    uri={data.featured_image}
+                                    preview={images.food.preview}
+                                    title={`${data.title}`}
+                                    backgroundColor={Colors.Food.primary}
+                                    onPress={this.food}
+                                />
+                            ))}
                         </SafeAreaView>
                     </ScrollView>
                 </View>
@@ -102,10 +93,6 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center",
         padding: StyleGuide.spacing.small
-    },
-    logo: {
-        width: 50,
-        height: 50
     },
     content: {
         paddingVertical: StyleGuide.spacing.small

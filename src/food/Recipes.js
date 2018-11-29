@@ -24,7 +24,7 @@ export default class Recipes extends React.Component<NavigationProps<>> {
         const {renderItem, onPress} = this;
         const {navigation} = this.props;
         const data = FoodAPI.categories;
-        const title = "Recipes";
+        const title = "Tags";
         const rightAction = {
             icon: "sign-out",
             onPress

@@ -92,8 +92,7 @@ const MainNavigator = createSwitchNavigator({
     Food: { screen: FoodNavigator },
     Social: { screen: SocialNavigator },
     Music: { screen: MusicNavigator },
-    Photography: { screen: PhotographyNavigator },
-    Travel: { screen: TravelNavigator }
+    Photography: { screen: PhotographyNavigator }
 });
 
 const AppNavigator = createAppContainer(MainNavigator);
