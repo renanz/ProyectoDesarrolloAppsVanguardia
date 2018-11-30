@@ -109,14 +109,14 @@ export default class PhotoScreen extends React.Component<PhotoScreenProps, Photo
          return (
              <View style={styles.container}>
                  <StatusBar hidden />
-                 <Image preview={photo.urls.preview} uri={photo.urls.regular} style={styles.image} />
+                 <Image preview={photo} uri={photo} style={styles.image} />
                  <BlurView style={StyleSheet.absoluteFill} {...{intensity}} />
                  {
                      <Animated.View style={{ opacity, ...StyleSheet.absoluteFillObject, transform: [{ rotate }] }}>
                          <Crop style={styles.filter}>
                              <Filter
                                  style={StyleSheet.absoluteFill}
-                                 uri={photo.urls.regular}
+                                 uri={photo}
                                  onDraw={setFiltersAsReady}
                                  {...{name}}
                              />
@@ -151,7 +151,7 @@ export default class PhotoScreen extends React.Component<PhotoScreenProps, Photo
                      </Footer>
                  }
                  <PhotoActionSheet ref={this.setFiltersRef} title="Filters" onClose={onCloseActionSheet}>
-                     <Filters {...{uri: photo.urls.regular, switchFilter}} />
+                     <Filters {...{uri: photo, switchFilter}} />
                  </PhotoActionSheet>
                  <PhotoActionSheet ref={this.setCropRef} title="Edit" onClose={onCloseActionSheet}>
                      <Rotation {...{rotation}} />
