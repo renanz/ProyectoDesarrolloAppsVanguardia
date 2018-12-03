@@ -29,3 +29,4 @@ export const FoodNavigator = createBottomTabNavigator({
     Recipes: { screen: RecipesNavigator },
     Restaurants: { screen: RestaurantsNavigator }
 }, TabNavigatorOptions(tabs));
+
