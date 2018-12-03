@@ -20,12 +20,13 @@ export default class Welcome extends React.Component<NavigationProps<>> {
         themeProvider.switchColors(Colors[themeName]);
         navigation.navigate(themeName);
     }
+    
+    food = () => this.navigate("Food");
+    photography = () => this.navigate("Photography");
 
     state = {
         postsData: []
     };
-
-    food = () => this.navigate("Food");
 
     async componentDidMount(): Promise<void> {
         let info = [];
@@ -56,23 +57,27 @@ export default class Welcome extends React.Component<NavigationProps<>> {
                     <SafeAreaView style={styles.safeHeader} top>
                         <View style={styles.header}>
                             <View>
-                                <Text type="footnote">Proyecto Desarrollo Apps Vanguardia</Text>
-                                <Text type="title1">Posts</Text>
+                                <Text type="footnote">El Blog de los Hondureños en el Extranjero</Text>
+                                <Text type="title1">Ruta5</Text>
                             </View>
                         </View>
                     </SafeAreaView>
                     <ScrollView contentContainerStyle={styles.content}>
                         <SafeAreaView>
-                            {this.state.postsData.map(data => (
-                                <Kit
-                                    key={data.ID.toString()}
-                                    uri={data.featured_image}
-                                    preview={images.food.preview}
-                                    title={`${data.title}`}
-                                    backgroundColor={Colors.Food.primary}
-                                    onPress={this.food}
-                                />
-                            ))}
+                            <Kit
+                                uri={images.food.uri}
+                                preview={images.food.preview}
+                                title="Food"
+                                backgroundColor={Colors.Food.primary}
+                                onPress={this.food}
+                            />
+                            <Kit
+                                uri={images.photography.uri}
+                                preview={images.photography.preview}
+                                title="Photography"
+                                backgroundColor={Colors.Photography.primary}
+                                onPress={this.photography}
+                            />
                         </SafeAreaView>
                     </ScrollView>
                 </View>
