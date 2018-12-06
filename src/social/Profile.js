@@ -61,8 +61,8 @@ export default class Profile extends React.Component<NavigationProps<>, ProfileS
                 <Header picture={me.cover} heightRatio={1}>
                     <NavigationBar type="transparent" rightAction={{ icon: "sign-out", onPress }} {...{navigation}} />
                     <View style={styles.container}>
-                        <Text color="white" type="title3" style={styles.text}>RutaCinco</Text>
-                        <Text color="white" type="callout" style={styles.text}>Gracias por visitar Ruta5, el blog de los hondureños en el extranjero.</Text>
+                        <Text color="black" type="title3" style={styles.text}>{}</Text>
+                        <Text color="black" type="callout" style={styles.text}>{}</Text>
                         <SegmentedControl
                             transparent
                             values={["Bio", "Contactanos"]}
