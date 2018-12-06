@@ -15,7 +15,7 @@ import Profile from "./Profile";
 import type {NavigationProps} from "../components/Navigation";
 
 const tabs = [
-    { key: "Library", label: "Library", icon: "feed" }
+    { key: "Library", label: "Posts", icon: "feed" }
 ];
 
 const LibraryNavigator = createStackNavigator({

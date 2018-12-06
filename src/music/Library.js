@@ -75,7 +75,7 @@ class Library extends React.Component<PlayerProps & NavigationProps<>> {
         const {renderItem, onPress} = this;
         const {navigation} = this.props;
         const data = this.state.postsData;
-        const title = "Posts12";
+        const title = "Posts";
         const rightAction = {
             icon: "sign-out",
             onPress
