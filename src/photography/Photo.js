@@ -109,53 +109,16 @@ export default class PhotoScreen extends React.Component<PhotoScreenProps, Photo
          return (
              <View style={styles.container}>
                  <StatusBar hidden />
+                 {
+                     <NavigationBar
+                     type="transparent"
+                     back={from}
+                     withGradient
+                     largeTitle
+                     {...{navigation, title, subtitle}}
+                 />
+                 }
                  <Image preview={photo} uri={photo} style={styles.image} />
-                 <BlurView style={StyleSheet.absoluteFill} {...{intensity}} />
-                 {
-                     <Animated.View style={{ opacity, ...StyleSheet.absoluteFillObject, transform: [{ rotate }] }}>
-                         <Crop style={styles.filter}>
-                             <Filter
-                                 style={StyleSheet.absoluteFill}
-                                 uri={photo}
-                                 onDraw={setFiltersAsReady}
-                                 {...{name}}
-                             />
-                         </Crop>
-                     </Animated.View>
-                 }
-                 {
-                     !areFiltersReady && <View />
-                 }
-                 {
-                     areFiltersReady && (
-                         <NavigationBar
-                             type="transparent"
-                             back={from}
-                             withGradient
-                             largeTitle
-                             {...{navigation, title, subtitle}}
-                         />
-                     )
-                 }
-                 {
-                     <Footer>
-                         {
-                             areFiltersReady && <IconButton name="filters" onPress={toggleFilters} />
-                         }
-                         {
-                             areFiltersReady && <IconButton name="crop" onPress={toggleCrop} />
-                         }
-                         {
-                             !areFiltersReady && <ActivityIndicator color="white" />
-                         }
-                     </Footer>
-                 }
-                 <PhotoActionSheet ref={this.setFiltersRef} title="Filters" onClose={onCloseActionSheet}>
-                     <Filters {...{uri: photo, switchFilter}} />
-                 </PhotoActionSheet>
-                 <PhotoActionSheet ref={this.setCropRef} title="Edit" onClose={onCloseActionSheet}>
-                     <Rotation {...{rotation}} />
-                 </PhotoActionSheet>
              </View>
          );
      }
@@ -171,7 +134,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between"
     },
     image: {
-        ...StyleSheet.absoluteFillObject
+        width: viewport, height: viewport * 0.75, position: "absolute", top: 200
     },
     filter: {
         position: "absolute",

@@ -11,7 +11,7 @@ function getInfo() {
        
         for (let index = 0; index < post.length; index++) {
             info.push(post[index].featured_image);
-            //console.log(post[index].featured_image);
+            //console.log(post.length);
         }
         
     }).catch(err => console.log(err.message)); //eslint-disable-line   
