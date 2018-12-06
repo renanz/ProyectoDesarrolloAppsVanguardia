@@ -5,6 +5,7 @@ export {default as TabBar} from "./TabBar";
 export {default as Card} from "./Card";
 export {default as Text} from "./Text";
 export {default as Feed} from "./Feed";
+export {default as Posts} from "./Posts";
 export {default as GeoFeed} from "./GeoFeed";
 export {default as Header} from "./Header";
 export {default as DetailsBar} from "./DetailsBar";
