@@ -10,8 +10,7 @@ import Restaurants from "./Restaurants";
 import Restaurant from "./Restaurant";
 
 const tabs = [
-    { key: "Recipes", label: "Recipes", icon: "restaurant" },
-    { key: "Restaurants", label: "Restaurants", icon: "feed" }
+    { key: "Recipes", label: "Recipes", icon: "feed" }
 ];
 
 const RecipesNavigator = createStackNavigator({
@@ -20,13 +19,6 @@ const RecipesNavigator = createStackNavigator({
     Recipe: { screen: Recipe }
 }, StackNavigatorOptions);
 
-const RestaurantsNavigator = createStackNavigator({
-    Restaurants: { screen: Restaurants },
-    Restaurant: { screen: Restaurant }
-}, StackNavigatorOptions);
-
 export const FoodNavigator = createBottomTabNavigator({
-    Recipes: { screen: RecipesNavigator },
-    Restaurants: { screen: RestaurantsNavigator }
+    Recipes: { screen: RecipesNavigator }
 }, TabNavigatorOptions(tabs));
-
