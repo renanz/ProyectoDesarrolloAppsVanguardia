@@ -15,9 +15,7 @@ import Profile from "./Profile";
 import type {NavigationProps} from "../components/Navigation";
 
 const tabs = [
-    { key: "Library", label: "Library", icon: "music" },
-    { key: "Discovery", label: "Discovery", icon: "feed" },
-    { key: "MusicalProfile", label: "Profile", icon: "account" }
+    { key: "Library", label: "Library", icon: "feed" }
 ];
 
 const LibraryNavigator = createStackNavigator({
@@ -25,21 +23,8 @@ const LibraryNavigator = createStackNavigator({
     Album: { screen: Album }
 }, StackNavigatorOptions);
 
-const DiscoveryNavigator = createStackNavigator({
-    Discovery: { screen: Discovery },
-    Playlist: { screen: Playlist }
-}, StackNavigatorOptions);
-
-const ProfileNavigator = createStackNavigator({
-    MusicalProfile: { screen: Profile },
-    ProfileAlbum: { screen: Album },
-    ProfilePlaylist: { screen: Playlist }
-}, StackNavigatorOptions);
-
 export const MusicNavigator = createBottomTabNavigator({
-    Library: { screen: LibraryNavigator },
-    Discovery: { screen: DiscoveryNavigator },
-    MusicalProfile: { screen: ProfileNavigator }
+    Library: { screen: LibraryNavigator }
 }, {
     animationEnabled,
     // eslint-disable-next-line react/display-name
