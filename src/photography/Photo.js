@@ -1,6 +1,7 @@
 // @flow
 import moment from "moment";
 import * as React from "react";
+import ImageZoom from "react-native-image-pan-zoom";
 import {
     StyleSheet, View, Platform, StatusBar, Dimensions, ActivityIndicator, Animated
 } from "react-native";
@@ -9,6 +10,7 @@ import {NavigationBar, Image, BlurView, IconButton, Footer, type NavigationProps
 
 import {Filters, Filter, PhotoActionSheet, Rotation, Crop, type FilterName} from "../components/photography";
 import type {Photo} from "../components/photography/Model";
+
 
 type PhotoScreenProps = NavigationProps<{ photo: Photo, from: string }>;
 type PhotoScreenState = {
@@ -118,7 +120,12 @@ export default class PhotoScreen extends React.Component<PhotoScreenProps, Photo
                      {...{navigation, title, subtitle}}
                  />
                  }
-                 <Image preview={photo} uri={photo} style={styles.image} />
+                  <ImageZoom cropWidth={Dimensions.get('window').width}
+                       cropHeight={Dimensions.get('window').height}
+                       imageWidth={viewport}
+                       imageHeight={viewport * 0.75}>
+                    <Image preview={photo} uri={photo} style={styles.image}/>
+                    </ImageZoom>
              </View>
          );
      }
@@ -134,7 +141,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between"
     },
     image: {
-        width: viewport, height: viewport * 0.75, position: "absolute", top: 200
+        width: viewport, height: viewport * 0.75, position: "absolute", top: -50
     },
     filter: {
         position: "absolute",
