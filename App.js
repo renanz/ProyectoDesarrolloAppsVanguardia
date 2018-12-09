@@ -1,5 +1,5 @@
 // @flow
-import * as React from "react";
+import * as React from "react"; 
 import {StatusBar, Platform} from "react-native";
 import {createSwitchNavigator, createAppContainer} from "react-navigation";
 import {Font, AppLoading} from "expo";
@@ -92,8 +92,7 @@ const MainNavigator = createSwitchNavigator({
     Food: { screen: FoodNavigator },
     Social: { screen: SocialNavigator },
     Music: { screen: MusicNavigator },
-    Photography: { screen: PhotographyNavigator },
-    Travel: { screen: TravelNavigator }
+    Photography: { screen: PhotographyNavigator }
 });
 
 const AppNavigator = createAppContainer(MainNavigator);
