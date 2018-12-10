@@ -7,7 +7,7 @@ import {
 } from "../components";
 
 import SocialAPI from "./api";
-import {Post} from "../components/social";
+
 
 import type {NavigationProps} from "../components";
 
