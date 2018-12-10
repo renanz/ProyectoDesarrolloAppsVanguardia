@@ -34,9 +34,8 @@ export default class AlbumScreen extends React.PureComponent<NavigationProps<{ a
         return (
             <Container>
                 <NavigationBar {...{ navigation, back }} />
-                <View style={styles.header}>
-                    <View style={styles.container}>
-                        <Text>sabrosoo</Text>
+                <Content style={styles.gutter}>
+                    <ScrollView style={styles.container}>
                         <Image style={styles.image} {...album.picture} />
                         <View style={styles.metadata}>
                             <Text type="headline">{album.title}</Text>
@@ -44,11 +43,9 @@ export default class AlbumScreen extends React.PureComponent<NavigationProps<{ a
                                 {album.author.name}
                             </Text>
                         </View>
-                        <ScrollView style={{ flex: 1 }}>
-                            <HTML html={album.content} imagesMaxWidth={Dimensions.get("window").width} />
-                        </ScrollView>
-                    </View>
-                </View>
+                        <HTML html={album.content} imagesMaxWidth={Dimensions.get("window").width} />
+                    </ScrollView>
+                </Content>
             </Container>
         );
     }
