@@ -10,7 +10,7 @@
         "primaryColor": "#00AAFF",
         "splash": {
             "image": "./ruta5.png",
-            "resizeMode": "cover",
+            "resizeMode": "contain",
             "backgroundColor": "#ffffff"
         },
         "packagerOpts": {
