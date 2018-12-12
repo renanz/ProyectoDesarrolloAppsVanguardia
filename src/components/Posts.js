@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import {FlatList, StyleSheet, View, Animated, Dimensions} from "react-native";
+import {FlatList, StyleSheet, View, Animated, Dimensions, ActivityIndicator} from "react-native";
 
 import NavigationBar from "./NavigationBar";
 import Text from "./Text";
@@ -20,7 +20,10 @@ type PostsProps<T> = ThemeProps & StyleProps & NavigationProps<*> & {
     back?: string,
     rightAction?: Action,
     numColumns?: number,
-    inverted?: boolean
+    inverted?: boolean,
+    onEndReached?: Promise<void>,
+    onEndReachedThreshold?: number,
+    loading?: boolean
 };
 
 type PostsState = {
@@ -43,7 +46,7 @@ class Posts<T: Item> extends React.Component<PostsProps<T>, PostsState> {
 
     render(): React.Node {
         const {renderItem} = this;
-        const {data, title, navigation, theme, back, rightAction, header, numColumns, style, inverted} = this.props;
+        const {data, title, navigation, theme, back, rightAction, header, numColumns, style, inverted, onEndReached, onEndReachedThreshold, loading} = this.props;
         const {scrollAnimation} = this.state;
         const translateY = scrollAnimation.interpolate({
             inputRange: [55, 56, 57],
@@ -96,8 +99,11 @@ class Posts<T: Item> extends React.Component<PostsProps<T>, PostsState> {
                     )}
                     scrollEventThrottle={1}
                     columnWrapperStyle={(numColumns && numColumns > 0) ? styles.columnWrapperStyle : undefined}
+                    onEndReached={onEndReached}
+                    onEndReachedThreshold={onEndReachedThreshold}
                     {...{data, keyExtractor, renderItem, onScroll, numColumns, inverted}}
                 />
+                {loading && <ActivityIndicator size="large" />}
             </View>
         );
     }
