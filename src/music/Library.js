@@ -10,7 +10,7 @@ import type {Album as AlbumModel} from "../components/music/Model";
 import {PlayerProvider, Album, withPlayer, type PlayerProps} from "../components/music"
 
 
-class Library extends React.Component<PlayerProps & NavigationProps<>> {
+class Noticias extends React.Component<PlayerProps & NavigationProps<>> {
 
     renderItem = (album: AlbumModel): React.Node => {
         const {navigation} = this.props;
@@ -140,9 +140,8 @@ class Library extends React.Component<PlayerProps & NavigationProps<>> {
             onPress
         };
         const onEndReachedThreshold = 0.8;
-        const back = title;
         return (
-            <Posts {...{data, renderItem, title, back, navigation, rightAction, onEndReached, onEndReachedThreshold, loading}} style={styles.content} />
+            <Posts {...{data, renderItem, title, navigation, rightAction, onEndReached, onEndReachedThreshold, loading}} style={styles.content} />
         );
     }
 }
@@ -153,4 +152,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default withPlayer(Library);
+export default withPlayer(Noticias);

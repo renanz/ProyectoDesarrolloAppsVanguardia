@@ -33,37 +33,38 @@ export default class AlbumScreen extends React.PureComponent<NavigationProps<{ a
 
         onClick = () => {
             Share.share({
-              ...Platform.select({
-                ios: {
-                  message: 'Have a look on : ',
-                  url: album.URL,
-                },
-                android: {
-                  message: 'Have a look on : \n' + album.URL
-                }
-              }),
-              title: 'Wow, did you see that?'
+                ...Platform.select({
+                    ios: {
+                        message: "Have a look on : ",
+                        url: album.URL
+                    },
+                    android: {
+                        message: `Have a look on : \n${album.URL}`
+                    }
+                }),
+                title: "Wow, did you see that?"
             }, {
-              ...Platform.select({
-                ios: {
-                  // iOS only:
-                  excludedActivityTypes: [
-                    'com.apple.UIKit.activity.PostToTwitter'
-                  ]
-                },
-                android: {
-                  // Android only:
-                  dialogTitle: 'Share : ' + album.title
-                }
-              })
+                ...Platform.select({
+                    ios: {
+                        // iOS only:
+                        excludedActivityTypes: [
+                            "com.apple.UIKit.activity.PostToTwitter"
+                        ]
+                    },
+                    android: {
+                    // Android only:
+                        dialogTitle: `Share : ${album.title}`
+                    }
+                })
             });
-          };
+        };
 
         // const tracks = MusicAPI.tracks(album.id);
         // const playlist = MusicAPI.transformAlbumToPlaylist(album);
+        const labelBack = "Noticias";
         return (
             <Container>
-                <NavigationBar {...{ navigation, back }} />
+                <NavigationBar {...{ navigation, back, labelBack }} />
                 <Content style={styles.gutter}>
                     <ScrollView style={styles.container}>
                         <Image style={styles.image} {...album.picture} />
@@ -75,12 +76,12 @@ export default class AlbumScreen extends React.PureComponent<NavigationProps<{ a
                         </View>
                         <HTML html={album.content} imagesMaxWidth={Dimensions.get("window").width} />
                         <Button
-                        onPress={onClick}
-                        title="Compartir"
-                        color="#1194F6"
+                            onPress={onClick}
+                            title="Compartir"
+                            color="#1194F6"
                         />
                     
-                        <View style={styles.seperator}/>
+                        <View style={styles.separator} />
                     
                            
                     </ScrollView>
