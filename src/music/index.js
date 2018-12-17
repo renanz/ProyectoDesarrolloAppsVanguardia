@@ -15,16 +15,16 @@ import Profile from "./Profile";
 import type {NavigationProps} from "../components/Navigation";
 
 const tabs = [
-    { key: "Library", label: "Posts", icon: "feed" }
+    { key: "Posts", label: "Posts", icon: "feed" }
 ];
 
 const LibraryNavigator = createStackNavigator({
-    Library: { screen: Library },
+    Posts: { screen: Library },
     Album: { screen: Album }
 }, StackNavigatorOptions);
 
 export const MusicNavigator = createBottomTabNavigator({
-    Library: { screen: LibraryNavigator }
+    Posts: { screen: LibraryNavigator }
 }, {
     animationEnabled,
     // eslint-disable-next-line react/display-name

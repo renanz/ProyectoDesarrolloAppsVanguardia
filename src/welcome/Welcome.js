@@ -11,6 +11,7 @@ import type {ThemeName} from "../components/theme";
 import type {NavigationProps} from "../components/Navigation";
 
 const images = require("./images");
+const ruta5 = require("../../ruta5.png");
 
 export default class Welcome extends React.Component<NavigationProps<>> {
 

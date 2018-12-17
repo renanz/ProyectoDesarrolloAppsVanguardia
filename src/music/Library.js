@@ -44,7 +44,7 @@ class Library extends React.Component<PlayerProps & NavigationProps<>> {
                 const post = res.data.posts;
                 for (let index = 0; index < post.length; index += 1) {
                     const element = {
-                        id: post[index].ID,
+                        id: post[index].ID.toString(),
                         title: post[index].title,
                         date: post[index].date,
                         modified: post[index].modified,
@@ -93,7 +93,7 @@ class Library extends React.Component<PlayerProps & NavigationProps<>> {
                 const post = res.data.posts;
                 for (let index = 0; index < post.length; index += 1) {
                     const element = {
-                        id: post[index].ID,
+                        id: post[index].ID.toString(),
                         title: post[index].title,
                         date: post[index].date,
                         modified: post[index].modified,
