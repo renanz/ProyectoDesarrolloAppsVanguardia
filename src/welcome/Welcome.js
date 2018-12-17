@@ -29,13 +29,26 @@ export default class Welcome extends React.Component<NavigationProps<>> {
     travel = () => this.navigate("Travel");
 
     state = {
-        postsData: []
+        postsData: [
+            {
+                id: "",
+                title: "",
+                URL: "",
+                featured_image: ""
+            },
+            {
+                id: "",
+                title: "",
+                URL: "",
+                featured_image: ""
+            }
+        ]
     };
 
     async componentDidMount(): Promise<void> {
         let info = [];
         axios
-            .get("https://public-api.wordpress.com/rest/v1.1/sites/rutacincohn.com/posts/?fields=ID,title,date,modified,author,URL,content,featured_image&number=50")
+            .get("https://public-api.wordpress.com/rest/v1.1/sites/rutacincohn.com/posts/?fields=ID,title,URL,featured_image&number=2")
             .then(res => {
                 const post = res.data.posts;
                 for (let index = 0; index < post.length; index++) {
@@ -71,7 +84,7 @@ export default class Welcome extends React.Component<NavigationProps<>> {
                             <Kit
                                 uri={images.music.uri}
                                 preview={images.music.preview}
-                                title="Posts"
+                                title="Noticias"
                                 backgroundColor={Colors.Music.primary}
                                 onPress={this.music}
                             />
@@ -83,8 +96,7 @@ export default class Welcome extends React.Component<NavigationProps<>> {
                                 onPress={this.photography}
                             />
                             <Kit
-
-                                uri={images.social.uri}
+                                uri="https://0.gravatar.com/avatar/062fda5a5a8e68c5ed1ea451cd155bc1?s=96&d=identicon&r=G"
                                 preview={images.social.preview}
                                 title="Acerca de Nosotros"
                                 backgroundColor={Colors.Social.primary}

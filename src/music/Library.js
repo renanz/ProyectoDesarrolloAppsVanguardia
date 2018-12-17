@@ -134,14 +134,15 @@ class Library extends React.Component<PlayerProps & NavigationProps<>> {
         const {navigation} = this.props;
         const data = this.state.postsData;
         const loading = this.state.loading;
-        const title = "Posts";
+        const title = "Noticias";
         const rightAction = {
             icon: "sign-out",
             onPress
         };
         const onEndReachedThreshold = 0.8;
+        const back = title;
         return (
-            <Posts {...{data, renderItem, title, navigation, rightAction, onEndReached, onEndReachedThreshold, loading}} style={styles.content} />
+            <Posts {...{data, renderItem, title, back, navigation, rightAction, onEndReached, onEndReachedThreshold, loading}} style={styles.content} />
         );
     }
 }
