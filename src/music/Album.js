@@ -74,11 +74,11 @@ export default class AlbumScreen extends React.PureComponent<NavigationProps<{ a
                             </Text>
                         </View>
                         <HTML html={album.content} imagesMaxWidth={Dimensions.get("window").width} />
-                        <TouchableOpacity
+                        <Button
                         onPress={onClick}
-                        >
-                        <Text>Share</Text>
-                        </TouchableOpacity>
+                        title="Compartir"
+                        color="#1194F6"
+                        />
                     
                         <View style={styles.seperator}/>
                     
