@@ -24,6 +24,7 @@ type NavigationBarProps = ThemeProps & NavigationProps<*> & {
     type: NavigationBarType,
     titleStyle?: Style,
     back?: string,
+    labelBack?: string,
     rightAction?: Action,
     withGradient: boolean,
     expanded: boolean,
@@ -46,7 +47,7 @@ class NavigationBar extends React.Component<NavigationBarProps> {
 
     render(): React.Node {
         const {
-            type, title, subtitle, theme, back, titleStyle, rightAction, withGradient, expanded, largeTitle
+            type, title, subtitle, theme, back, labelBack, titleStyle, rightAction, withGradient, expanded, largeTitle
         } = this.props;
         const block = { flex: largeTitle ? 2 : 1 };
         const containerStyle = {
@@ -56,7 +57,7 @@ class NavigationBar extends React.Component<NavigationBarProps> {
             <SafeAreaView style={containerStyle} top>
                 <View style={styles.content}>
                     <View style={[styles.leftBlock]}>
-                        {back && <LeftAction onPress={this.goBack} name="arrow-left" label={back} />}
+                        {back && <LeftAction onPress={this.goBack} name="arrow-left" label={labelBack ? labelBack : back} />}
                     </View>
                     {
                         (title !== "" && !expanded) && (
