@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from "react";
-import { StyleSheet, View, ScrollView, Dimensions } from "react-native";
+import { StyleSheet, View, ScrollView, Dimensions, TouchableOpacity, Button, Platform , Share} from "react-native";
 import HTML from "react-native-render-html";
 
 import { Container, NavigationBar, Content, List, Image, Text, StyleGuide } from "../components";
@@ -25,10 +25,40 @@ export default class AlbumScreen extends React.PureComponent<NavigationProps<{ a
     toggle = (playlist: PlaylistModel, track: TrackModel) => {
         this.playerActionSheet.toggle(playlist, track);
     };
+    
 
     render(): React.Node {
         const { navigation } = this.props;
         const { album, back } = navigation.state.params;
+
+        onClick = () => {
+            Share.share({
+              ...Platform.select({
+                ios: {
+                  message: 'Have a look on : ',
+                  url: album.URL,
+                },
+                android: {
+                  message: 'Have a look on : \n' + album.URL
+                }
+              }),
+              title: 'Wow, did you see that?'
+            }, {
+              ...Platform.select({
+                ios: {
+                  // iOS only:
+                  excludedActivityTypes: [
+                    'com.apple.UIKit.activity.PostToTwitter'
+                  ]
+                },
+                android: {
+                  // Android only:
+                  dialogTitle: 'Share : ' + album.title
+                }
+              })
+            });
+          };
+
         // const tracks = MusicAPI.tracks(album.id);
         // const playlist = MusicAPI.transformAlbumToPlaylist(album);
         return (
@@ -44,6 +74,15 @@ export default class AlbumScreen extends React.PureComponent<NavigationProps<{ a
                             </Text>
                         </View>
                         <HTML html={album.content} imagesMaxWidth={Dimensions.get("window").width} />
+                        <TouchableOpacity
+                        onPress={onClick}
+                        >
+                        <Text>Share</Text>
+                        </TouchableOpacity>
+                    
+                        <View style={styles.seperator}/>
+                    
+                           
                     </ScrollView>
                 </Content>
             </Container>
