@@ -42,7 +42,8 @@ export default class Welcome extends React.Component<NavigationProps<>> {
                 URL: "",
                 featured_image: ""
             }
-        ]
+        ],
+        ruta5: ""
     };
 
     async componentDidMount(): Promise<void> {
@@ -57,6 +58,14 @@ export default class Welcome extends React.Component<NavigationProps<>> {
 
                 this.setState(() => ({
                     postsData: info
+                }));
+            })
+            .catch(err => console.log(err.message)); //eslint-disable-lint
+        axios
+            .get("https://public-api.wordpress.com/rest/v1.1/sites/rutacincohn.com/posts/6936")
+            .then(res => {
+                this.setState(() => ({
+                    ruta5: res.data.featured_image
                 }));
             })
             .catch(err => console.log(err.message)); //eslint-disable-lint
@@ -82,21 +91,21 @@ export default class Welcome extends React.Component<NavigationProps<>> {
                     <ScrollView contentContainerStyle={styles.content}>
                         <SafeAreaView>
                             <Kit
-                                uri={images.music.uri}
+                                uri={this.state.postsData[0].featured_image}
                                 preview={images.music.preview}
                                 title="Noticias"
                                 backgroundColor={Colors.Music.primary}
                                 onPress={this.music}
                             />
                             <Kit
-                                uri={images.photography.uri}
+                                uri={this.state.postsData[1].featured_image}
                                 preview={images.photography.preview}
                                 title="Imágenes"
                                 backgroundColor={Colors.Photography.primary}
                                 onPress={this.photography}
                             />
                             <Kit
-                                uri="https://0.gravatar.com/avatar/062fda5a5a8e68c5ed1ea451cd155bc1?s=96&d=identicon&r=G"
+                                uri={this.state.ruta5}
                                 preview={images.social.preview}
                                 title="Acerca de Nosotros"
                                 backgroundColor={Colors.Social.primary}
