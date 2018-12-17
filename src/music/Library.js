@@ -10,7 +10,7 @@ import type {Album as AlbumModel} from "../components/music/Model";
 import {PlayerProvider, Album, withPlayer, type PlayerProps} from "../components/music"
 
 
-class Library extends React.Component<PlayerProps & NavigationProps<>> {
+class Noticias extends React.Component<PlayerProps & NavigationProps<>> {
 
     renderItem = (album: AlbumModel): React.Node => {
         const {navigation} = this.props;
@@ -134,7 +134,7 @@ class Library extends React.Component<PlayerProps & NavigationProps<>> {
         const {navigation} = this.props;
         const data = this.state.postsData;
         const loading = this.state.loading;
-        const title = "Posts";
+        const title = "Noticias";
         const rightAction = {
             icon: "sign-out",
             onPress
@@ -152,4 +152,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default withPlayer(Library);
+export default withPlayer(Noticias);

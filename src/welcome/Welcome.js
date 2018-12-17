@@ -29,13 +29,27 @@ export default class Welcome extends React.Component<NavigationProps<>> {
     travel = () => this.navigate("Travel");
 
     state = {
-        postsData: []
+        postsData: [
+            {
+                id: "",
+                title: "",
+                URL: "",
+                featured_image: ""
+            },
+            {
+                id: "",
+                title: "",
+                URL: "",
+                featured_image: ""
+            }
+        ],
+        ruta5: ""
     };
 
     async componentDidMount(): Promise<void> {
         let info = [];
         axios
-            .get("https://public-api.wordpress.com/rest/v1.1/sites/rutacincohn.com/posts/?fields=ID,title,date,modified,author,URL,content,featured_image&number=50")
+            .get("https://public-api.wordpress.com/rest/v1.1/sites/rutacincohn.com/posts/?fields=ID,title,URL,featured_image&number=2")
             .then(res => {
                 const post = res.data.posts;
                 for (let index = 0; index < post.length; index++) {
@@ -44,6 +58,14 @@ export default class Welcome extends React.Component<NavigationProps<>> {
 
                 this.setState(() => ({
                     postsData: info
+                }));
+            })
+            .catch(err => console.log(err.message)); //eslint-disable-lint
+        axios
+            .get("https://public-api.wordpress.com/rest/v1.1/sites/rutacincohn.com/posts/6936")
+            .then(res => {
+                this.setState(() => ({
+                    ruta5: res.data.featured_image
                 }));
             })
             .catch(err => console.log(err.message)); //eslint-disable-lint
@@ -69,22 +91,21 @@ export default class Welcome extends React.Component<NavigationProps<>> {
                     <ScrollView contentContainerStyle={styles.content}>
                         <SafeAreaView>
                             <Kit
-                                uri={images.music.uri}
+                                uri={this.state.postsData[0].featured_image}
                                 preview={images.music.preview}
-                                title="Posts"
+                                title="Noticias"
                                 backgroundColor={Colors.Music.primary}
                                 onPress={this.music}
                             />
                             <Kit
-                                uri={images.photography.uri}
+                                uri={this.state.postsData[1].featured_image}
                                 preview={images.photography.preview}
                                 title="Imágenes"
                                 backgroundColor={Colors.Photography.primary}
                                 onPress={this.photography}
                             />
                             <Kit
-
-                                uri={images.social.uri}
+                                uri={this.state.ruta5}
                                 preview={images.social.preview}
                                 title="Acerca de Nosotros"
                                 backgroundColor={Colors.Social.primary}
