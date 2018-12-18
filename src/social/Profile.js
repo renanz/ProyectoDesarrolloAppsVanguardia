@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
-import {StyleSheet, View} from "react-native";
+import {StyleSheet, View, Linking} from "react-native";
+import {SocialIcon} from "react-native-elements";
 
 import {
     Container, Header, NavigationBar, Text, StyleGuide, SegmentedControl, Content, App
@@ -18,7 +19,6 @@ type ProfileState = {
 };
 
 export default class Profile extends React.Component<NavigationProps<>, ProfileState> {
-
     state = {
         selectedIndex: 0
     };
@@ -29,6 +29,8 @@ export default class Profile extends React.Component<NavigationProps<>, ProfileS
         const {navigation} = this.props;
         navigation.navigate("Welcome");
     }
+
+    onSocialPressed = (url) => { Linking.openURL(url); }
 
     data = (params) => {
         if (!params) {
@@ -47,8 +49,52 @@ export default class Profile extends React.Component<NavigationProps<>, ProfileS
             );
         }
         return (
-            <Text color="black" type="callout" style={styles.body}>{" Correo Electronico: rutacincohn@gmail.com \n \n Telefono: \n \n Sitio Web: https://rutacincohn.com/ \n \n Facebook: https://www.facebook.com/RutaCincoHn/ \n \n Twitter: https://twitter.com/ruta5hn \n \n Linkedin: https://www.linkedin.com/in/ruta5hn/ \n \n Instagram: https://www.instagram.com/ruta5hn/ \n \n YouTube: "}
-            </Text>
+            <View>
+                <Text color="black" type="callout" style={styles.body}>{" Correo Electronico: rutacincohn@gmail.com \n \n Telefono: \n \n"}
+                </Text>
+                <SocialIcon
+                    type = "wordpress"
+                    style={{ flex: 2 }}
+                    button
+                    title = "Visita nuestro Sitio Web"
+                    onPress = {() => {this.onSocialPressed("https://rutacincohn.com/")}}
+                />
+                <SocialIcon
+                    type = "facebook"
+                    style={{ flex: 2 }}
+                    button
+                    title = "Sigue nuestra página en Facebook"
+                    onPress = {() => {this.onSocialPressed("https://www.facebook.com/n/?RutaCincoHn/")}}
+                />
+                <SocialIcon
+                    type = "twitter"
+                    style={{ flex: 2 }}
+                    button
+                    title = "Síguenos en Twitter"
+                    onPress = {() => {this.onSocialPressed("https://twitter.com/ruta5hn")}}
+                />
+                <SocialIcon
+                    type = "linkedin"
+                    style={{ flex: 2 }}
+                    button
+                    title = "Visita nuestro Perfil en LinkedIn"
+                    onPress = {() => {this.onSocialPressed("https://www.linkedin.com/in/ruta5hn/")}}
+                />
+                <SocialIcon
+                    type = "instagram"
+                    style={{ flex: 2 }}
+                    button
+                    title = "Síguenos en Instagram"
+                    onPress = {() => {this.onSocialPressed("https://www.instagram.com/ruta5hn/")}}
+                />
+                <SocialIcon
+                    type = "youtube"
+                    style={{ flex: 2 }}
+                    button
+                    title = "Suscríbete en nuestro Canal de Youtube"
+                    onPress = {() => {this.onSocialPressed("https://www.youtube.com/channel/UCk_-JJq-7Pv7W-IfqiyWnvg?view_as=subscriber")}}
+                />
+            </View>
         );        
     }
     render(): React.Node {
